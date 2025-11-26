@@ -1,0 +1,53 @@
+A1. ¿Por qué es más fácil eliminar un nodo intermedio en una lista doblemente ligada?
+
+Porque cada nodo conoce tanto a su siguiente como a su anterior.
+No necesitas buscar el nodo anterior para reconectar los enlaces, como en una lista simple.
+
+A2. ¿Qué sucede si se olvida actualizar alguno de los punteros anterior o siguiente?
+
+Ocurre:
+
+Pérdida de la lista (nodos inaccesibles → fugas de memoria).
+
+Enlaces rotos que causan:
+
+fallas de segmentación,
+
+recorridos incompletos,
+
+datos corruptos.
+
+A3. ¿En qué escenarios prácticos se usa una lista doblemente ligada?
+
+Editores de texto (ir adelante/atrás en líneas).
+
+Navegadores (historial adelante/atrás).
+
+Listas donde se requiere eliminación e inserción rápida en cualquier punto.
+
+Reproductores multimedia (siguiente/anterior canción).
+
+B1. Diferencia entre lista doblemente ligada y circular doblemente ligada
+Lista Doble	Lista Circular Doble
+El primero tiene anterior = NULL.	El primero apunta al último.
+El último tiene siguiente = NULL.	El último apunta al primero.
+Recorrido termina en NULL.	Recorrido puede ser infinito si no se detecta el inicio.
+B2. ¿Qué errores causan ciclos infinitos al recorrer una lista circular?
+
+Olvidar detenerse cuando temp == inicio.
+
+Enlaces mal actualizados (dos nodos apuntándose incorrectamente).
+
+No inicializar correctamente el primer nodo circular.
+
+B3. Aplicaciones reales
+
+Reproductores multimedia (playlist cíclica).
+
+Buffers circulares.
+
+Juegos (turnos de jugadores en ciclo).
+
+Menús circulares.
+
+Sistemas operativos (planificación circular de procesos: Round Robin).
