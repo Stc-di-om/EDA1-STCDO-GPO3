@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX 5
 
-// ---------------------------
-// Estructura de la Pila
-// ---------------------------
+// ----------------------
+//      ESTRUCTURA PILA
+// ----------------------
 typedef struct {
     int datos[MAX];
     int tope;
@@ -12,7 +13,7 @@ typedef struct {
 
 void inicializarPila(Pila *p) {
     p->tope = -1;
-    printf("Pila inicializada vacía\n");
+    printf("\nPila inicializada vacía.\n");
 }
 
 int pilaLlena(Pila *p) {
@@ -23,17 +24,18 @@ int pilaVacia(Pila *p) {
     return p->tope == -1;
 }
 
-void push(Pila *p, int dato) {
+void push(Pila *p, int valor) {
     if (pilaLlena(p)) {
-        printf("Error: La pila está llena.\n");
+        printf("Error: la pila está llena.\n");
         return;
     }
-    p->datos[++p->tope] = dato;
+    p->datos[++p->tope] = valor;
+    printf("Elemento %d insertado en la pila.\n", valor);
 }
 
 int pop(Pila *p) {
     if (pilaVacia(p)) {
-        printf("Error: La pila está vacía.\n");
+        printf("Error: la pila está vacía.\n");
         return -1;
     }
     return p->datos[p->tope--];
@@ -50,9 +52,9 @@ void mostrarPila(Pila *p) {
     printf("\n");
 }
 
-// ---------------------------
-// Estructura de la Cola
-// ---------------------------
+// ----------------------
+//      ESTRUCTURA COLA
+// ----------------------
 typedef struct {
     int datos[MAX];
     int frente;
@@ -62,7 +64,7 @@ typedef struct {
 void inicializarCola(Cola *c) {
     c->frente = 0;
     c->final = -1;
-    printf("Cola inicializada vacía\n");
+    printf("\nCola inicializada vacía.\n");
 }
 
 int colaLlena(Cola *c) {
@@ -73,17 +75,18 @@ int colaVacia(Cola *c) {
     return c->frente > c->final;
 }
 
-void enqueue(Cola *c, int dato) {
+void enqueue(Cola *c, int valor) {
     if (colaLlena(c)) {
-        printf("Error: La cola está llena.\n");
+        printf("Error: la cola está llena.\n");
         return;
     }
-    c->datos[++c->final] = dato;
+    c->datos[++c->final] = valor;
+    printf("Elemento %d insertado en la cola.\n", valor);
 }
 
 int dequeue(Cola *c) {
     if (colaVacia(c)) {
-        printf("Error: La cola está vacía.\n");
+        printf("Error: la cola está vacía.\n");
         return -1;
     }
     return c->datos[c->frente++];
@@ -100,73 +103,79 @@ void mostrarCola(Cola *c) {
     printf("\n");
 }
 
-// ---------------------------
-// Programa principal
-// ---------------------------
+// --------------------------------------
+//      PROGRAMA PRINCIPAL
+// --------------------------------------
 int main() {
     Pila pila;
     Cola cola;
 
-    int n, dato;
-
-    // ---------------------------
-    // Paso 1: Crear pila
-    // ---------------------------
     inicializarPila(&pila);
+    inicializarCola(&cola);
 
-    // Paso 2: Insertar elementos
-    printf("\n¿Cuántos elementos quieres apilar? (max 5): ");
+    int n, valor;
+
+    // --------------------------
+    //      INSERTAR EN PILA
+    // --------------------------
+    printf("\n¿Cuántos elementos quieres apilar? (máximo 5): ");
     scanf("%d", &n);
 
-    if (n > MAX) n = MAX;
-
-    for (int i = 0; i < n; i++) {
-        printf("Ingrese elemento %d: ", i+1);
-        scanf("%d", &dato);
-        push(&pila, dato);
+    for (int i = 0; i < n && i < MAX; i++) {
+        printf("Ingresa el elemento %d: ", i + 1);
+        scanf("%d", &valor);
+        push(&pila, valor);
         mostrarPila(&pila);
     }
 
-    // Paso 3: Extraer elementos
+    // --------------------------
+    //      SACAR DE PILA
+    // --------------------------
     printf("\n¿Cuántos elementos quieres desapilar?: ");
     scanf("%d", &n);
 
     for (int i = 0; i < n; i++) {
-        int valor = pop(&pila);
-        if (valor != -1)
-            printf("Elemento desapilado: %d\n", valor);
+        int salido = pop(&pila);
+        if (salido != -1)
+            printf("Salió de la pila: %d\n", salido);
         mostrarPila(&pila);
     }
 
-    // ---------------------------
-    // Paso 4: Crear cola
-    // ---------------------------
-    printf("\n");
-    inicializarCola(&cola);
-
-    // Paso 5: Insertar en la cola
-    printf("\n¿Cuántos elementos quieres encolar? (max 5): ");
+    // --------------------------
+    //      INSERTAR EN COLA
+    // --------------------------
+    printf("\n¿Cuántos elementos quieres encolar? (máximo 5): ");
     scanf("%d", &n);
 
-    if (n > MAX) n = MAX;
-
-    for (int i = 0; i < n; i++) {
-        printf("Ingrese elemento %d: ", i+1);
-        scanf("%d", &dato);
-        enqueue(&cola, dato);
+    for (int i = 0; i < n && i < MAX; i++) {
+        printf("Ingresa el elemento %d: ", i + 1);
+        scanf("%d", &valor);
+        enqueue(&cola, valor);
         mostrarCola(&cola);
     }
 
-    // Paso 6: Extraer de la cola
+    // --------------------------
+    //      SACAR DE COLA
+    // --------------------------
     printf("\n¿Cuántos elementos quieres desencolar?: ");
     scanf("%d", &n);
 
     for (int i = 0; i < n; i++) {
-        int valor = dequeue(&cola);
-        if (valor != -1)
-            printf("Elemento desencolado: %d\n", valor);
+        int salido = dequeue(&cola);
+        if (salido != -1)
+            printf("Salió de la cola: %d\n", salido);
         mostrarCola(&cola);
     }
 
+    // --------------------------
+    //      COMPARACIÓN
+    // --------------------------
+    printf("\n--------------------------------------\n");
+    printf("   Comparación entre Pila y Cola\n");
+    printf("--------------------------------------\n");
+    printf("Pila → LIFO (último en entrar, primero en salir)\n");
+    printf("Cola → FIFO (primero en entrar, primero en salir)\n");
+
     return 0;
 }
+
