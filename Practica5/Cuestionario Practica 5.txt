@@ -1,0 +1,47 @@
+1. ¿Qué diferencias notaron entre el orden de salida de la pila y de la cola?
+Pila → LIFO (Last In, First Out)
+
+El último elemento que se insertó es el primero en salir.
+
+Ejemplo:
+Si apilas: 10, 20, 30
+El orden de salida es: 30, 20, 10.
+
+Cola → FIFO (First In, First Out)
+
+El primer elemento que se inserta es el primero en salir.
+
+Ejemplo:
+Si encolas: 5, 8, 12
+El orden de salida es: 5, 8, 12.
+
+2. ¿Qué sucede si intentan hacer pop en una pila vacía o dequeue en una cola vacía?
+
+El programa muestra un mensaje de error porque no hay elementos que sacar.
+
+Ejemplos del programa:
+
+En la pila (POP en pila vacía):
+Error: la pila está vacía.
+
+En la cola (DEQUEUE en cola vacía):
+Error: la cola está vacía.
+
+
+Además:
+
+La pila devuelve -1 como valor de error.
+
+La cola también devuelve -1 para indicar que no se obtuvo un elemento válido.
+
+3. ¿Qué sucede si intentan insertar más elementos que la capacidad máxima?
+
+La capacidad máxima es de 5 elementos para pila y cola.
+
+Si intentas insertar un sexto elemento, el programa detecta que está llena:
+
+En la pila (PUSH cuando está llena):
+Error: la pila está llena.
+
+En la cola (ENQUEUE cuando está llena):
+Error: la cola está llena.
