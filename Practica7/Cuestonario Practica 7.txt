@@ -1,0 +1,87 @@
+1. ¿Por qué las listas enlazadas no requieren tamaño fijo como los arreglos?
+
+Porque cada nodo se reserva dinámicamente con malloc, uno por uno.
+La memoria se va pidiendo conforme se necesitan nodos → crecimiento dinámico.
+
+2. ¿Qué diferencia hay entre mover la cabeza y modificar los punteros internos?
+
+Mover la cabeza: solo cambia dónde comienza la lista (caso de eliminar el primer nodo).
+
+Modificar punteros internos: implica ajustar nodos internos para que “salten” el eliminado.
+
+1B. ¿Qué ventaja tiene la lista circular frente a la simple?
+
+La principal ventaja es que no existe un final real: el último nodo apunta de nuevo al primero.
+
+Gracias a eso:
+
+Ventajas clave
+
+Permite recorridos cíclicos sin necesidad de reiniciar manualmente el puntero.
+
+Es ideal para procesos repetitivos, como turnos o iteraciones circulares.
+
+El recorrido puede comenzar desde cualquier nodo, no solo desde la cabeza.
+
+Facilita crear colas circulares, donde insertar y eliminar es constante (O(1)).
+
+No requiere verificar NULL en el recorrido.
+
+2B. ¿Qué error puede causar un bucle infinito en una lista circular?
+
+El error típico es:
+
+Alvidar detenerse cuando el puntero vuelve a la cabeza.
+
+En una lista simple, el recorrido se detiene cuando:
+
+ptr == NULL
+
+
+Pero en una lista circular NULL nunca aparece.
+
+Si el programador no usa la condición:
+
+while (actual != cabeza)
+
+
+entonces el recorrido nunca termina → bucle infinito.
+
+3B. ¿Qué estructuras o programas del mundo real se basan en listas circulares?
+
+Las listas circulares se usan cuando algo debe repetirse ciclo tras ciclo y no tener fin ni inicio rígido.
+
+✔ Ejemplos del mundo real:
+a) Sistemas de turnos (round-robin)
+
+Planificación de CPU en sistemas operativos.
+
+Turnos de juegos multijugador.
+
+Control de acceso secuencial en redes.
+
+b) Buffers circulares
+
+Colas de impresión.
+
+Reproducción continua de audio/video.
+
+Buffers en sistemas embebidos.
+
+c) Menús circulares
+
+Interfaces gráficas que permiten “volver al primer elemento”.
+
+Carátulas de reproductores de música.
+
+d) Sistemas de simulación
+
+Simulación de procesos repetitivos sin fin.
+
+Control de tráfico de redes.
+
+e) Estructuras de datos avanzadas
+
+Colas circulares (implementadas con arreglos o listas).
+
+Implementación de algoritmos de Josephus.
