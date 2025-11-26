@@ -1,0 +1,99 @@
+A1. ¿Por qué en la cola circular no se desperdician posiciones como en la cola lineal?
+
+En una cola lineal, cuando desencolas elementos, el índice front avanza hacia la derecha.
+Aunque haya espacio libre al inicio del arreglo, no se reutiliza, porque el arreglo no gira.
+
+En cambio, en una cola circular, los índices se mueven así:
+
+índice = (índice + 1) % MAX
+
+
+Esto permite que, cuando final llega al final del arreglo, vuelva al inicio y reutilice espacios vacíos, evitando desperdicio.
+
+A2. ¿Qué pasa cuando el índice final llega al final del arreglo?
+
+Cuando final vale MAX - 1 y encolas otro valor, se actualiza así:
+
+final = (final + 1) % MAX
+
+
+Entonces:
+
+Si final era 4 y MAX=5 → (4 + 1) % 5 = 0
+
+Regresa al índice 0, cerrando el ciclo.
+
+Esto permite que la estructura sea realmente circular.
+
+3A. ¿Qué pasa cuando el índice final llega al final del arreglo?
+
+Cuando final vale MAX - 1 y encolas otro valor, se actualiza así:
+
+final = (final + 1) % MAX
+
+
+Entonces:
+
+Si final era 4 y MAX=5 → (4 + 1) % 5 = 0
+
+Regresa al índice 0, cerrando el ciclo.
+
+Esto permite que la estructura sea realmente circular.
+
+B1. ¿Qué diferencia tiene el deque frente a la cola circular normal?
+
+Un deque permite:
+
+Insertar por el frente y por el final.
+
+Eliminar por el frente y por el final.
+
+Una cola circular normal solo permite:
+
+Encolar por el final.
+
+Desencolar por el frente.
+
+Por eso, el deque es más flexible:
+Es como tener una pila y una cola combinadas en una sola estructura.
+
+B2. ¿Qué operaciones permiten simular tanto FIFO como LIFO?
+
+FIFO (cola normal)
+
+insert_rear()
+
+delete_front()
+
+LIFO (pila)
+
+insert_front() (equivale a push)
+
+delete_front() (equivale a pop)
+
+O usando el otro extremo:
+
+insert_rear() + delete_rear() también simulan una pila.
+
+B3. Investiga qué aplicaciones prácticas tiene un deque
+
+Aplicaciones reales de un deque:
+
+Implementación de colas de prioridad doble
+Donde se procesan elementos por ambos extremos.
+
+Algoritmo de ventana deslizante (sliding window)
+Usado en análisis de datos, promedios móviles, series de tiempo.
+
+Sistemas operativos
+Para planificación donde ciertos procesos entran o salen por extremos distintos.
+
+Implementar stacks y queues al mismo tiempo
+Un deque puede sustituir a ambas estructuras.
+
+BFS optimizado (0-1 BFS)
+Usado en teoría de grafos cuando hay aristas con pesos 0 y 1.
+
+Historial de navegación (adelante/atrás)
+Modelo perfecto para deshacer/rehacer
+
