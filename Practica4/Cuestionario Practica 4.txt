@@ -1,0 +1,57 @@
+1. ¿Qué diferencia observaron entre los valores iniciales con malloc y calloc?
+Malloc
+
+Reserva memoria sin inicializar.
+
+Los valores iniciales son basura: números aleatorios que quedaron en la memoria.
+
+Calloc
+
+Reserva memoria inicializada a cero.
+
+Todos los elementos comienzan en 0 automáticamente.
+
+2. ¿Qué sucede si en realloc piden un tamaño más grande que el original? ¿y más pequeño?
+Si piden un tamaño más grande
+
+Realloc intenta ampliar el bloque de memoria.
+
+Puede suceder:
+
+Lo expande en el mismo lugar (ideal).
+
+Mueve el bloque a una nueva dirección si no hay espacio contiguo suficiente.
+
+En este caso, copia los datos viejos y devuelve una nueva dirección.
+
+La nueva parte del arreglo no está inicializada, contiene basura (igual que malloc).
+
+Si piden un tamaño más pequeño
+
+El bloque se reduce.
+
+Los elementos que quedan fuera del nuevo tamaño simplemente se pierden.
+
+Realloc devuelve un puntero al bloque reducido.
+
+3. ¿Qué pasa si olvidan llamar a free?
+
+Si no llamas a free(), ocurre lo siguiente:
+
+Pérdida de memoria (memory leak)
+
+La memoria reservada queda ocupada incluso después de que ya no se usa.
+
+El sistema operativo ya no puede reutilizarla durante la ejecución del programa.
+
+Posibles consecuencias
+
+Si ocurre una sola vez, normalmente no pasa nada grave.
+
+Pero si pasa repetidamente (como dentro de un bucle o programa grande):
+
+Se llena la memoria RAM.
+
+El programa se vuelve lento.
+
+Puede incluso crashear por “falta de memoria”.
